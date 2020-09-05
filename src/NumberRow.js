@@ -1,9 +1,9 @@
 define([
 	"skylark-widgets-base/Widget",
-	"skylark-widgets-texts/StaticText",
+	"skylark-widgets-base/TextPane",
 	"./numerics",
 	"./NumberBox"
-],function(Widget,StaticText,numerics,NumberBox){
+],function(Widget,TextPane,numerics,NumberBox){
 	"use strict";
 
 	/**
@@ -76,7 +76,7 @@ define([
 		addValue : function(label) {
 			var input = new NumberBox(this);
 
-			var text = new StaticText(this);
+			var text = new TextPane(this);
 			text.setText(label);	
 
 			this.values.push({
