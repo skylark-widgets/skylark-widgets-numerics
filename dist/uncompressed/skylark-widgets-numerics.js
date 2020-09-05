@@ -1,8 +1,8 @@
 /**
- * skylark-widgets-medias - The skylark media widgets library
+ * skylark-widgets-numerics - The skylark numeric widgets library
  * @author Hudaokeji, Inc.
  * @version v0.9.0
- * @link https://github.com/skylark-widgets/skylark-widgets-medias/
+ * @link https://github.com/skylark-widgets/skylark-widgets-numerics/
  * @license MIT
  */
 (function(factory,globals) {
@@ -86,7 +86,7 @@
 
 })(function(define,require) {
 
-define('skylark-widgets-medias/numerics',[
+define('skylark-widgets-numerics/numerics',[
 	"skylark-langx/skylark"
 ],function(skylark) {
 	var numerics = {};
@@ -96,7 +96,7 @@ define('skylark-widgets-medias/numerics',[
 });
 
 
-define('skylark-widgets-medias/NumberBox',[
+define('skylark-widgets-numerics/NumberBox',[
 	"skylark-widgets-base/Widget",
 	"./numerics"
 ],function(Widget,numerics){
@@ -204,7 +204,7 @@ define('skylark-widgets-medias/NumberBox',[
 
 	return numerics.NumberBox = NumberBox;
 });
-define('skylark-widgets-medias/NumberRow',[
+define('skylark-widgets-numerics/NumberRow',[
 	"skylark-widgets-base/Widget",
 	"skylark-widgets-base/TextPane",
 	"./numerics",
@@ -318,7 +318,7 @@ define('skylark-widgets-medias/NumberRow',[
 
 	return numerics.NumberRow = NumberRow;
 });
-define('skylark-widgets-medias/Slider',[
+define('skylark-widgets-numerics/Slider',[
 	"skylark-domx-eventer",
 	"skylark-widgets-base/Widget",
 	"./numerics"
@@ -600,7 +600,7 @@ define('skylark-widgets-medias/Slider',[
 
 	return numerics.Slider = Slider;
 });
-define('skylark-widgets-medias/VectorBox',[
+define('skylark-widgets-numerics/VectorBox',[
 	"skylark-widgets-base/Widget",
 	"./numerics"
 ],function(Widget,numerics){
@@ -871,7 +871,7 @@ define('skylark-widgets-medias/VectorBox',[
 
 	return numerics.VectorBox = VectorBox;
 });
-define('skylark-widgets-medias/main',[
+define('skylark-widgets-numerics/main',[
 	"./numerics",
 	"./NumberBox",
 	"./NumberRow",
@@ -880,8 +880,8 @@ define('skylark-widgets-medias/main',[
 ],function(numerics){
 	return numerics;
 });
-define('skylark-widgets-medias', ['skylark-widgets-medias/main'], function (main) { return main; });
+define('skylark-widgets-numerics', ['skylark-widgets-numerics/main'], function (main) { return main; });
 
 
 },this);
-//# sourceMappingURL=sourcemaps/skylark-widgets-medias.js.map
+//# sourceMappingURL=sourcemaps/skylark-widgets-numerics.js.map
