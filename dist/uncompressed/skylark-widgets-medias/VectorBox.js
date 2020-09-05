@@ -152,7 +152,13 @@ define([
 		 * @return {Object} Value stored.
 		 */
 		getValue : function() {
-			return {x: parseFloat(this.x.value), y: parseFloat(this.y.value), z: parseFloat(this.z.value), w: parseFloat(this.w.value), order: this.order};
+			return {
+				x: parseFloat(this.x.value), 
+				y: parseFloat(this.y.value), 
+				z: parseFloat(this.z.value), 
+				w: parseFloat(this.w.value), 
+				order: this.order
+			};
 		},
 
 		/**
