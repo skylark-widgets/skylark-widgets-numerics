@@ -12,7 +12,7 @@ define([
 	 * @class NumberRow
 	 * @extends {Widget}
 	 */
-	var NumberBox = Widget.inherit({
+	var NumberRow = Widget.inherit({
 
 		_construct : function (parent) {
 			Widget.prototype._construct.call(this, parent, "div");

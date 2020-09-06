@@ -13,10 +13,10 @@ define([
 	 * @class VectorBox
 	 * @extends {Widget}
 	 */
-	var NumberBox = Widget.inherit({
+	var VectorBox = Widget.inherit({
 
 		_construct : function (parent) {
-			Widget.call(this, parent, "div");
+			Widget.prototype._construct.call(this, parent, "div");
 
 			//X Text
 			this.xText = document.createElement("div");
@@ -107,7 +107,7 @@ define([
 		setType : function(type){
 			if(this.type !== type){
 				this.type = type;
-				this._updateInterface();
+				this.updateInterface();
 			}
 		},
 

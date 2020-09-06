@@ -218,7 +218,7 @@ define('skylark-widgets-numerics/NumberRow',[
 	 * @class NumberRow
 	 * @extends {Widget}
 	 */
-	var NumberBox = Widget.inherit({
+	var NumberRow = Widget.inherit({
 
 		_construct : function (parent) {
 			Widget.prototype._construct.call(this, parent, "div");
@@ -336,7 +336,7 @@ define('skylark-widgets-numerics/Slider',[
 	var Slider = Widget.inherit({
 
 		_construct : function (parent) {
-			Widget.call(this, parent, "div");
+			Widget.prototype._construct.call(this, parent, "div");
 
 			this._elm.style.overflow = "visible";
 
@@ -448,7 +448,7 @@ define('skylark-widgets-numerics/Slider',[
 			 */
 			//this.manager = new EventManager();
 			//this.manager.add(window, "mousemove", function(event)
-			eventer.on(widnow,"mousemove", function(event)
+			eventer.on(window,"mousemove", function(event)
 			{
 				var delta = (event.pageX - self.mouseStart) / (self.size.x);
 				var value = self.valueStart + delta * (self.max - self.min);
@@ -615,10 +615,10 @@ define('skylark-widgets-numerics/VectorBox',[
 	 * @class VectorBox
 	 * @extends {Widget}
 	 */
-	var NumberBox = Widget.inherit({
+	var VectorBox = Widget.inherit({
 
 		_construct : function (parent) {
-			Widget.call(this, parent, "div");
+			Widget.prototype._construct.call(this, parent, "div");
 
 			//X Text
 			this.xText = document.createElement("div");
@@ -709,7 +709,7 @@ define('skylark-widgets-numerics/VectorBox',[
 		setType : function(type){
 			if(this.type !== type){
 				this.type = type;
-				this._updateInterface();
+				this.updateInterface();
 			}
 		},
 

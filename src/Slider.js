@@ -16,7 +16,7 @@ define([
 	var Slider = Widget.inherit({
 
 		_construct : function (parent) {
-			Widget.call(this, parent, "div");
+			Widget.prototype._construct.call(this, parent, "div");
 
 			this._elm.style.overflow = "visible";
 
@@ -128,7 +128,7 @@ define([
 			 */
 			//this.manager = new EventManager();
 			//this.manager.add(window, "mousemove", function(event)
-			eventer.on(widnow,"mousemove", function(event)
+			eventer.on(window,"mousemove", function(event)
 			{
 				var delta = (event.pageX - self.mouseStart) / (self.size.x);
 				var value = self.valueStart + delta * (self.max - self.min);
