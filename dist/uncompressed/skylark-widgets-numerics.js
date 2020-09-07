@@ -197,7 +197,7 @@ define('skylark-widgets-numerics/NumberBox',[
 			return Number.parseFloat(this._elm.value);
 		},
 
-		_updateVisibility : function() 	{
+		updateVisibility : function() 	{
 			this._elm.style.visibility = this.visible ? "visible" : "hidden";
 		}
 	});
@@ -293,8 +293,8 @@ define('skylark-widgets-numerics/NumberRow',[
 			return input;
 		},
 
-		_updateSize : function() {
-			Widget.prototype._updateSize.call(this);
+		updateSize : function() {
+			Widget.prototype.updateSize.call(this);
 			
 			var width = Math.round((this.size.x - this.values.length * this.labelSize) / this.values.length);
 			var x = 0;
@@ -448,29 +448,35 @@ define('skylark-widgets-numerics/Slider',[
 			 */
 			//this.manager = new EventManager();
 			//this.manager.add(window, "mousemove", function(event)
-			eventer.on(window,"mousemove", function(event)
-			{
-				var delta = (event.pageX - self.mouseStart) / (self.size.x);
-				var value = self.valueStart + delta * (self.max - self.min);
-				self.setValue(value);
-
-				if (self.onChange !== null) {
-					self.onChange(self.value);
-				}
-			});
 
 			//this.manager.add(window, "mouseup", function(event)
-			eventer.on(window, "mouseup", function(event)
-			{	
-				//self.manager.destroy();
-			});
+			//{	
+			//	//self.manager.destroy();
+			//});
 
 			this.scrubber.onmousedown = function(event)
 			{
 				self.mouseStart = event.pageX;
 				self.valueStart = self.value;
-				self.manager.create();
+				//self.manager.create();
 				event.stopPropagation();
+
+				var move = function(event)
+				{
+					var delta = (event.pageX - self.mouseStart) / (self.size.x);
+					var value = self.valueStart + delta * (self.max - self.min);
+					self.setValue(value);
+
+					if (self.onChange !== null) {
+						self.onChange(self.value);
+					}
+				}; 
+				eventer.on(window,"mousemove", move);
+
+				eventer.one(window,"mouseup",function(){
+					eventer.off(window,"mousemove", move);
+				});
+
 			};
 
 			this.track.onmousedown = function(event)
@@ -562,7 +568,7 @@ define('skylark-widgets-numerics/Slider',[
 			}
 
 			this.value = value;
-			this._updateValue();
+			this.updateValue();
 		},
 
 		/**
@@ -580,7 +586,7 @@ define('skylark-widgets-numerics/Slider',[
 		 *
 		 * @method updateValue
 		 */
-		_updateValue : function() {
+		updateValue : function() {
 			var progress = ((this.value - this.min) / (this.max - this.min)) * 100;
 
 			this.progress.style.width = progress + "%";
@@ -620,6 +626,8 @@ define('skylark-widgets-numerics/VectorBox',[
 		_construct : function (parent) {
 			Widget.prototype._construct.call(this, parent, "div");
 
+			var skin = this.getSkin();
+
 			//X Text
 			this.xText = document.createElement("div");
 			this.xText.style.position = "absolute";
@@ -633,8 +641,10 @@ define('skylark-widgets-numerics/VectorBox',[
 			{
 				var input = document.createElement("input");
 				input.type = "number";
-				input.style.backgroundColor = Editor.theme.boxColor;
-				input.style.color = Editor.theme.textColor;
+				//input.style.backgroundColor = Editor.theme.boxColor;
+				//input.style.color = Editor.theme.textColor;
+				input.style.backgroundColor = skin.boxColor;
+				input.style.color = skin.textColor;
 				input.style.borderStyle = "none";
 				input.style.position = "absolute";
 				input.style.boxSizing = "border-box";
@@ -816,8 +826,8 @@ define('skylark-widgets-numerics/VectorBox',[
 			this.w.onchange = onChange;
 		},
 
-		_updateSize : function() {
-			Widget.prototype._updateSize.call(this);
+		updateSize : function() {
+			Widget.prototype.updateSize.call(this);
 			
 			var sizeX = Math.round((this.size.x - this.type * 15) / this.type);
 			var sizeY = this.size.y + "px";

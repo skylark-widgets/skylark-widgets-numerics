@@ -18,6 +18,8 @@ define([
 		_construct : function (parent) {
 			Widget.prototype._construct.call(this, parent, "div");
 
+			var skin = this.getSkin();
+
 			//X Text
 			this.xText = document.createElement("div");
 			this.xText.style.position = "absolute";
@@ -31,8 +33,10 @@ define([
 			{
 				var input = document.createElement("input");
 				input.type = "number";
-				input.style.backgroundColor = Editor.theme.boxColor;
-				input.style.color = Editor.theme.textColor;
+				//input.style.backgroundColor = Editor.theme.boxColor;
+				//input.style.color = Editor.theme.textColor;
+				input.style.backgroundColor = skin.boxColor;
+				input.style.color = skin.textColor;
 				input.style.borderStyle = "none";
 				input.style.position = "absolute";
 				input.style.boxSizing = "border-box";
@@ -214,8 +218,8 @@ define([
 			this.w.onchange = onChange;
 		},
 
-		_updateSize : function() {
-			Widget.prototype._updateSize.call(this);
+		updateSize : function() {
+			Widget.prototype.updateSize.call(this);
 			
 			var sizeX = Math.round((this.size.x - this.type * 15) / this.type);
 			var sizeY = this.size.y + "px";

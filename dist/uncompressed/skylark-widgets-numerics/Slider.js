@@ -128,29 +128,35 @@ define([
 			 */
 			//this.manager = new EventManager();
 			//this.manager.add(window, "mousemove", function(event)
-			eventer.on(window,"mousemove", function(event)
-			{
-				var delta = (event.pageX - self.mouseStart) / (self.size.x);
-				var value = self.valueStart + delta * (self.max - self.min);
-				self.setValue(value);
-
-				if (self.onChange !== null) {
-					self.onChange(self.value);
-				}
-			});
 
 			//this.manager.add(window, "mouseup", function(event)
-			eventer.on(window, "mouseup", function(event)
-			{	
-				//self.manager.destroy();
-			});
+			//{	
+			//	//self.manager.destroy();
+			//});
 
 			this.scrubber.onmousedown = function(event)
 			{
 				self.mouseStart = event.pageX;
 				self.valueStart = self.value;
-				self.manager.create();
+				//self.manager.create();
 				event.stopPropagation();
+
+				var move = function(event)
+				{
+					var delta = (event.pageX - self.mouseStart) / (self.size.x);
+					var value = self.valueStart + delta * (self.max - self.min);
+					self.setValue(value);
+
+					if (self.onChange !== null) {
+						self.onChange(self.value);
+					}
+				}; 
+				eventer.on(window,"mousemove", move);
+
+				eventer.one(window,"mouseup",function(){
+					eventer.off(window,"mousemove", move);
+				});
+
 			};
 
 			this.track.onmousedown = function(event)
@@ -242,7 +248,7 @@ define([
 			}
 
 			this.value = value;
-			this._updateValue();
+			this.updateValue();
 		},
 
 		/**
@@ -260,7 +266,7 @@ define([
 		 *
 		 * @method updateValue
 		 */
-		_updateValue : function() {
+		updateValue : function() {
 			var progress = ((this.value - this.min) / (this.max - this.min)) * 100;
 
 			this.progress.style.width = progress + "%";

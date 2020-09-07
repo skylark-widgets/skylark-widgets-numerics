@@ -99,7 +99,7 @@ define([
 			return Number.parseFloat(this._elm.value);
 		},
 
-		_updateVisibility : function() 	{
+		updateVisibility : function() 	{
 			this._elm.style.visibility = this.visible ? "visible" : "hidden";
 		}
 	});

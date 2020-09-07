@@ -87,8 +87,8 @@ define([
 			return input;
 		},
 
-		_updateSize : function() {
-			Widget.prototype._updateSize.call(this);
+		updateSize : function() {
+			Widget.prototype.updateSize.call(this);
 			
 			var width = Math.round((this.size.x - this.values.length * this.labelSize) / this.values.length);
 			var x = 0;
