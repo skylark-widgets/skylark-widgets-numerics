@@ -75,8 +75,10 @@ define([
 		 */
 		addValue : function(label) {
 			var input = new NumberBox(this);
+			input.css("position","absolute");
 
 			var text = new TextPane(this);
+			text.css("position","absolute");
 			text.setText(label);	
 
 			this.values.push({
